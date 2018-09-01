@@ -1,0 +1,86 @@
+inherit_from: .rubocop_todo.yml
+
+inherit_gem:
+  rubocop-rails_config:
+    - config/rails.yml
+require: rubocop-rspec
+
+
+AllCops:
+  TargetRubyVersion: 2.4
+  DisplayCopNames: true
+  Exclude:
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "vendor/**/*"
+    - "bin/*"
+    - "tmp/**/*"
+    - spec/support/**/*
+    - 'node_modules/**/*'
+
+Rails:
+  Enabled: true
+
+Style/Documentation: # It is a nice to have, but has a huge cost.
+  Enabled: false
+
+Style/DoubleNegation: # To keep consistency in our api. method? should return a boolean
+  Enabled: false
+
+Style/ParallelAssignment: # I'm not against this
+  Enabled: false
+
+Style/FrozenStringLiteralComment: #nice to have, but will change every single file :broken_hearth:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+  Max: 4
+
+Style/ClassAndModuleChildren: # TO DISCUSS
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+StringLiterals:
+  Enabled: false
+
+RSpec/MultipleExpectations: # it is not consire it a bad practice. http://betterspecs.org/#single
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 10
+  Exclude:
+    - 'spec/features/**/*'
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - 'db/seeds.rb'
+
+Metrics/ParameterLists:
+  Max: 5
+  Enabled: false # this is at the moment
+
+Metrics/MethodLength:
+  Max: 10
+
+Metrics/BlockLength:
+  Exclude:
+    - "config/**/*"
+    - "db/**/*"
+    - "spec/**/*"
+
+RSpec/DescribeClass:
+  Exclude:
+    - "spec/request/**/*"
+
+# To be deleted when we run Rails 5 and ruby 2.4
+
+RSpec/MessageSpies:
+  Enabled: false
+
+Rails/HttpPositionalArguments:
+  Enabled: false
+
